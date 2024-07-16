@@ -12,7 +12,6 @@ def chapters():
     chapters = [
         {"title": "Chapter 1", "summary": "Summary of chapter 1..."},
         {"title": "Chapter 2", "summary": "Summary of chapter 2..."},
-        # Add more chapters as needed
     ]
     return render_template('chapters.html', chapters=chapters)
 
