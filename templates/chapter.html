@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ chapter.title }}</h2>
+<p>{{ chapter.summary }}</p>
+<nav class="chapter-nav">
+    <a href="{{ url_for('chapters_list') }}">Back to Chapters</a>
+</nav>
+{% endblock %}

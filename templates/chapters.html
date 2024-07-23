@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Chapter Summaries</h2>
-{% for chapter in chapters %}
-    <h3>{{ chapter.title }}</h3>
-    <p>{{ chapter.summary }}</p>
-{% endfor %}
+<nav class="chapter-nav">
+    {% for chapter in chapters %}
+    <a href="{{ url_for('chapter', chapter_id=chapter.id) }}">{{ chapter.title }}</a>
+    {% endfor %}
+</nav>
 {% endblock %}
