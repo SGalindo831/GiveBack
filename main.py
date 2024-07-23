@@ -99,7 +99,7 @@ You have a right to equal opportunity housing, a refundable security deposit, th
 
 	However you invest, use it to pay off student loans and focus more on your wants. But remember to pay your taxes on these or the I.R.S would find you and either have your arrested or pay a big fine bigger than the amount of taxes you pay on a yearly basis.
 """},
-    # Add more chapters as needed
+
 ]
 
 @app.route('/')
@@ -129,6 +129,25 @@ def calculator():
         total = round(total, 2)
         result = f"If you invest ${monthly_investment} monthly for {years} years, you could have ${total:,} in your IRA."
     return render_template('calculator.html', result=result)
+
+@app.route('/budget', methods=['GET', 'POST'])
+def budget():
+    if request.method == 'POST':
+        income = float(request.form['income'])
+        expenses = {
+            'rent': float(request.form['rent']),
+            'food': float(request.form['food']),
+            'utilities': float(request.form['utilities']),
+            'transportation': float(request.form['transportation']),
+            'entertainment': float(request.form['entertainment']),
+            'other': float(request.form['other'])
+        }
+        total_expenses = sum(expenses.values())
+        balance = income - total_expenses
+        
+        return render_template('budget_result.html', income=income, expenses=expenses, total_expenses=total_expenses, balance=balance)
+    
+    return render_template('budget_form.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
